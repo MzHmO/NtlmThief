@@ -225,7 +225,7 @@ void ParseNTResponse(const std::vector<BYTE>& message, LPCWSTR challenge, Intern
 		result.Resp2 = byteArrayToString(nt_resp);
 	}
 	else if (nt_resp_len > 24) {
-		result.Domain = byteArrayToString(domain);
+		result.Domain = ConvertHex(byteArrayToString(domain));
 		result.Resp1 = byteArrayToString(nt_resp).substr(0, 32);
 		result.Resp2 = byteArrayToString(nt_resp).substr(32);
 	}
