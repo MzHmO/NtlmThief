@@ -36,16 +36,14 @@ DWORD ProcessNtlmSSP(int argc, char* argv[], LPCWSTR challenge) {
 				ferror(L"ApplyProcessToken")
 			}
 		}
-
-
-		if (downgrade) {
-			NTLMRestore(oldValue_LMCompatibilityLevel, oldValue_NtlmMinClientSec, oldValue_RestrictSendingNTLMTraffic);
-		}
-
 	}
 
-start:
-	return ProcessInternalMonologue(challenge);
+	DWORD result = ProcessInternalMonologue(challenge);
+	if (downgrade && elevated) {
+		NTLMRestore(oldValue_LMCompatibilityLevel, oldValue_NtlmMinClientSec, oldValue_RestrictSendingNTLMTraffic);
+	}
+
+	return result;
 }
 
 
