@@ -180,7 +180,7 @@ InternalMonologueResponse InternalMonologueForCurrentUser(LPCWSTR challenge, boo
 		&ClientLifeTime
 	);
 
-	CheckStatus(status, L"InitializeSecurityContext (after challenge replacing)")
+	//CheckStatus(status, L"InitializeSecurityContext (after challenge replacing)")
 
 	if (status != SEC_E_OK && DisableEss) {
 		vfree(ClientSecBuffer2.pvBuffer);
